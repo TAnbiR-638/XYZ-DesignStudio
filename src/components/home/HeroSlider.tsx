@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
-import { HERO_SLIDES } from "@/lib/data";
+import { HERO_SLIDES, STUDIO } from "@/data";
 
 const INTERVAL = 6500;
 
@@ -60,6 +60,9 @@ export default function HeroSlider() {
             We design and build calm, characterful homes, workplaces and restaurants — from the first sketch
             to the last cushion, with one team and one honest price.
           </p>
+          <p lang="bn" className="mt-3 animate-fade-up font-bangla text-base text-linen/65 [animation-delay:350ms]">
+            {STUDIO.taglineBn}
+          </p>
           <div className="mt-9 flex animate-fade-up flex-wrap gap-3 [animation-delay:450ms]">
             <Link href="/projects" className="btn btn-bronze">
               Explore our work <span aria-hidden>→</span>
@@ -76,9 +79,13 @@ export default function HeroSlider() {
             <p key={slide.eyebrow} className="animate-fade-up text-xs font-semibold tracking-[0.25em] text-linen/60 uppercase">
               {slide.eyebrow}
             </p>
-            <p key={slide.title} className="mt-1 animate-fade-up font-display text-2xl italic">
-              {slide.title}
-            </p>
+            <Link
+              key={slide.title}
+              href={`/projects/${slide.slug}`}
+              className="mt-1 inline-block animate-fade-up font-display text-2xl italic hover:text-bronze"
+            >
+              {slide.title} <span className="not-italic text-base">↗</span>
+            </Link>
           </div>
 
           <div className="flex items-center gap-5">

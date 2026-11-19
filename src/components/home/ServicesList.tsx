@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { SERVICES } from "@/lib/data";
+import { SERVICES } from "@/data";
 import Reveal from "../Reveal";
 
 /** Editorial list on desktop: hovering a row swaps the sticky preview image. */
@@ -16,7 +16,7 @@ export default function ServicesList() {
         {SERVICES.map((s, i) => (
           <Reveal as="li" key={s.slug} delay={i * 60}>
             <Link
-              href={`/services#${s.slug}`}
+              href={`/services/${s.slug}`}
               onMouseEnter={() => setActive(i)}
               onFocus={() => setActive(i)}
               className="group flex items-start gap-5 border-b border-ink/10 py-6 transition-colors md:gap-8 md:py-8"

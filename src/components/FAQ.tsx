@@ -1,23 +1,26 @@
 "use client";
 
-import { useState } from "react";
-import { FAQS } from "@/lib/data";
+import { useId, useState } from "react";
+import type { FaqItem } from "@/data";
 
-export default function FAQ() {
-  const [open, setOpen] = useState<number | null>(0);
+export default function FAQ({ items, defaultOpen = 0 }: { items: FaqItem[]; defaultOpen?: number | null }) {
+  const [open, setOpen] = useState<number | null>(defaultOpen);
+  const uid = useId();
 
   return (
     <ul className="border-t border-ink/10">
-      {FAQS.map((f, i) => {
+      {items.map((f, i) => {
         const isOpen = open === i;
+        const qId = `${uid}-q-${i}`;
+        const aId = `${uid}-a-${i}`;
         return (
           <li key={f.q} className="border-b border-ink/10">
             <h3>
               <button
                 type="button"
-                id={`faq-q-${i}`}
+                id={qId}
                 aria-expanded={isOpen}
-                aria-controls={`faq-a-${i}`}
+                aria-controls={aId}
                 onClick={() => setOpen(isOpen ? null : i)}
                 className="flex w-full items-center justify-between gap-6 py-6 text-left"
               >
@@ -36,9 +39,9 @@ export default function FAQ() {
               </button>
             </h3>
             <div
-              id={`faq-a-${i}`}
+              id={aId}
               role="region"
-              aria-labelledby={`faq-q-${i}`}
+              aria-labelledby={qId}
               className={`grid transition-[grid-template-rows] duration-500 ease-soft ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
             >
               <div className="overflow-hidden">

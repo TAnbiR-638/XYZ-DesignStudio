@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
-import { TESTIMONIALS } from "@/lib/data";
+import { TESTIMONIALS } from "@/data";
 
 export default function Testimonials() {
   const [i, setI] = useState(0);
@@ -23,7 +24,7 @@ export default function Testimonials() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="relative mx-auto h-56 w-48 sm:h-72 sm:w-60">
+      <Link href={`/projects/${t.projectSlug}`} className="group relative mx-auto block h-64 w-52 sm:h-80 sm:w-64">
         {TESTIMONIALS.map((x, k) => (
           <div
             key={x.name}
@@ -31,13 +32,16 @@ export default function Testimonials() {
               k === i ? "scale-100 opacity-100" : "scale-95 opacity-0"
             }`}
           >
-            <Image src={x.image} alt={x.name} fill sizes="240px" className="object-cover" />
+            <Image src={x.image} alt={x.projectTitle} fill sizes="256px" className="object-cover transition-transform duration-700 group-hover:scale-105" />
           </div>
         ))}
         <span className="absolute -right-4 -bottom-4 grid h-16 w-16 place-items-center rounded-full bg-bronze font-display text-5xl leading-none text-linen">
           &rdquo;
         </span>
-      </div>
+        <span className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-linen/90 px-3 py-1 text-[0.7rem] font-semibold whitespace-nowrap text-ink">
+          {t.projectTitle} →
+        </span>
+      </Link>
 
       <div>
         <div className="mb-6 flex gap-1 text-bronze" aria-label="Rated 5 out of 5">
@@ -48,9 +52,7 @@ export default function Testimonials() {
           ))}
         </div>
         <blockquote key={t.name} className="animate-fade-up">
-          <p className="font-display text-3xl leading-[1.2] font-medium text-balance text-linen md:text-[2.6rem]">
-            {t.quote}
-          </p>
+          <p className="font-display text-3xl leading-[1.2] font-medium text-balance text-linen md:text-[2.6rem]">{t.quote}</p>
           <footer className="mt-8">
             <p className="font-semibold text-linen">{t.name}</p>
             <p className="text-sm text-linen/55">{t.role}</p>

@@ -9,9 +9,11 @@ type Props = {
   image: string;
   crumbs?: { label: string; href?: string }[];
   children?: ReactNode;
+  /** Smaller title for long headings (e.g. articles). */
+  compact?: boolean;
 };
 
-export default function PageHero({ eyebrow, title, intro, image, crumbs = [], children }: Props) {
+export default function PageHero({ eyebrow, title, intro, image, crumbs = [], children, compact = false }: Props) {
   return (
     <section className="grain relative isolate flex min-h-[72svh] items-end overflow-hidden bg-forest text-linen">
       <Image
@@ -44,7 +46,11 @@ export default function PageHero({ eyebrow, title, intro, image, crumbs = [], ch
           </nav>
         )}
         <span className="eyebrow animate-fade-up text-linen/85 [animation-delay:100ms]">{eyebrow}</span>
-        <h1 className="mt-5 max-w-4xl animate-fade-up font-display text-5xl leading-[1] font-medium tracking-tight text-balance [animation-delay:200ms] sm:text-6xl lg:text-[5.5rem]">
+        <h1
+          className={`mt-5 max-w-4xl animate-fade-up font-display leading-[1] font-medium tracking-tight text-balance [animation-delay:200ms] ${
+            compact ? "text-4xl sm:text-5xl lg:text-6xl" : "text-5xl sm:text-6xl lg:text-[5.5rem]"
+          }`}
+        >
           {title}
         </h1>
         {intro && (

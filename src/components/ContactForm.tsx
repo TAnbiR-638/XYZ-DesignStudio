@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 
-const TYPES = ["Apartment", "Duplex / Villa", "Office", "Restaurant / Retail", "Architecture", "Other"];
+const TYPES = ["Apartment", "Duplex / Villa", "Office", "Restaurant / Retail", "Renovation", "Architecture", "Rooftop / Landscape", "Other"];
 const BUDGETS = ["Under ৳10 Lakh", "৳10–30 Lakh", "৳30–60 Lakh", "৳60 Lakh – 1 Cr", "Above ৳1 Cr"];
 
 const field =

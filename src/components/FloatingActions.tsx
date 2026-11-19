@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { STUDIO } from "@/lib/data";
+import { STUDIO } from "@/data";
 
 export default function FloatingActions() {
   const [show, setShow] = useState(false);

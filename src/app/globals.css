@@ -12,8 +12,10 @@
   --color-forest: #26302a;
   --color-forest-light: #33403a;
 
-  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  /* Hind Siliguri supplies Bangla glyphs and the ৳ sign that Manrope lacks. */
+  --font-sans: var(--font-manrope), var(--font-hind), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-cormorant), ui-serif, Georgia, serif;
+  --font-bangla: var(--font-hind), var(--font-manrope), sans-serif;
 
   --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
 
@@ -53,6 +55,25 @@
   :focus-visible {
     outline: 2px solid var(--color-bronze);
     outline-offset: 3px;
+  }
+
+  /* Keep browser autofill inside the field's shape and on-brand colours.
+     Fields can override --autofill-bg / --autofill-text (e.g. dark footer). */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-text-fill-color: var(--autofill-text, var(--color-ink));
+    -webkit-box-shadow: 0 0 0 1000px var(--autofill-bg, var(--color-linen)) inset;
+    box-shadow: 0 0 0 1000px var(--autofill-bg, var(--color-linen)) inset;
+    caret-color: var(--autofill-text, var(--color-ink));
+    transition: background-color 600000s 0s;
+  }
+
+  @media print {
+    header, footer, .no-print { display: none !important; }
+    body { background: #fff; }
   }
 }
 

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import ContactForm from "@/components/ContactForm";
 import Reveal from "@/components/Reveal";
-import { IMG, STUDIO } from "@/lib/data";
+import { IMG, STUDIO } from "@/data";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -57,7 +57,7 @@ export default function ContactPage() {
             <div className="rounded-[1.5rem] bg-forest p-6 text-linen">
               <p className="text-xs font-semibold tracking-[0.2em] text-linen/55 uppercase">Studio &amp; material library</p>
               <p className="mt-2 font-display text-2xl">{STUDIO.address}</p>
-              <p className="mt-3 text-sm text-linen/70">{STUDIO.hours}</p>
+              <p className="mt-3 text-sm text-linen/70">{STUDIO.hours} · {STUDIO.closed}</p>
               <p className="mt-1 text-sm text-linen/70">Walk-ins welcome · free parking</p>
             </div>
           </Reveal>
@@ -67,7 +67,7 @@ export default function ContactPage() {
           <Reveal className="overflow-hidden rounded-[2rem] border border-ink/10 bg-sand">
             <iframe
               title="Map showing XYZ Design Studio in Gulshan-2, Dhaka"
-              src="https://www.google.com/maps?q=Gulshan+2+Circle,+Dhaka&z=15&output=embed"
+              src={`https://www.google.com/maps?q=${STUDIO.mapQuery}&z=15&output=embed`}
               className="h-[380px] w-full grayscale-[0.6] md:h-[460px]"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

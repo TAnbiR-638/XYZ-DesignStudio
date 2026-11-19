@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Cormorant_Garamond, Hind_Siliguri, Manrope } from "next/font/google";
+import { SITE_URL } from "@/data";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/FloatingActions";
@@ -19,7 +20,15 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
+const hind = Hind_Siliguri({
+  variable: "--font-hind",
+  subsets: ["bengali"],
+  weight: ["400", "500"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "XYZ Design Studio — Interior & Architecture Studio in Dhaka",
     template: "%s · XYZ Design Studio",
@@ -47,7 +56,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${manrope.variable} ${cormorant.variable} antialiased`}>
+    <html lang="en" className={`${manrope.variable} ${cormorant.variable} ${hind.variable} antialiased`}>
       <body id="top" className="flex min-h-screen flex-col">
         <Header />
         <main className="flex-1">{children}</main>

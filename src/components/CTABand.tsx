@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "./Reveal";
-import { IMG, STUDIO } from "@/lib/data";
+import { IMG, STUDIO } from "@/data";
 
 export default function CTABand() {
   return (
